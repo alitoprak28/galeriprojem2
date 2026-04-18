@@ -1,0 +1,39 @@
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+import "@/app/globals.css";
+import { MobileActionBar } from "@/components/layout/mobile-action-bar";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
+import { StickyWhatsapp } from "@/components/layout/sticky-whatsapp";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://velocitamotors.example"),
+  title: {
+    default: "Velocita Motors | Premium Araç Galerisi",
+    template: "%s | Velocita Motors",
+  },
+  description:
+    "Mercedes-Benz, Audi, BMW, Tesla, Porsche ve Volkswagen modellerini premium dijital vitrin deneyimiyle keşfedin.",
+  keywords: [
+    "premium araç galerisi",
+    "istanbul oto galeri",
+    "ikinci el premium araç",
+    "mercedes audi bmw porsche tesla",
+  ],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  return (
+    <html lang="tr">
+      <body>
+        <div className="relative min-h-screen">
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <StickyWhatsapp />
+          <MobileActionBar />
+        </div>
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,7 @@
+Bu proje, premium segmentte araç satışı yapan galeriler için tasarlanmış modern, kurumsal ve dönüşüm odaklı bir web sitesi çalışmasıdır. Amaç sadece araçları listelemek değil; ziyaretçiye güven veren, araçları güçlü bir şekilde sunan ve kullanıcıyı hızlıca iletişime yönlendiren bir dijital vitrin oluşturmaktır.
+
+Tasarım tarafında daha klasik “esnaf galerisi” yaklaşımından uzak durup, daha modern ve premium bir dil tercih ettim. Koyu tonlar, güçlü tipografi, büyük araç görselleri, sade ama etkili yerleşim ve net çağrı alanlarıyla daha üst segment bir marka algısı oluşturmaya çalıştım. Özellikle Mercedes, BMW, Audi, Porsche gibi markaların bulunduğu bir galerinin dijitalde nasıl görünmesi gerekiyorsa, onu hedefledim.
+
+Yapısal olarak projede ana sayfa, araç listeleme, araç detay, markalar ve iletişim sayfaları bulunuyor. Araç detay sayfalarında teknik bilgiler, ekspertiz ve hasar şeffaflığı, randevu formu, benzer araçlar ve WhatsApp iletişim akışı yer alıyor. Böylece kullanıcı hem aracı inceleyebiliyor hem de tek adımda galeriden bilgi alabiliyor.
+
+Teknik tarafta projeyi Next.js App Router, Tailwind CSS, TypeScript ve Framer Motion ile geliştirdim. Component bazlı, yeniden kullanılabilir ve düzenli bir yapı kurmaya dikkat ettim. Bunun yanında mobil uyum, temel SEO yapısı, hızlı iletişim alanları ve gizli admin paneli gibi galerinin gerçek kullanım senaryosuna yaklaşan parçalar da ekledim.

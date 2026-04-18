@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #101419;
+  --foreground: #f4f0e9;
+  --panel: rgba(28, 34, 42, 0.78);
+  --line: rgba(244, 240, 233, 0.13);
+  --accent: #cfb88d;
+  --muted: #b0a89d;
+  --soft: #171c23;
+  --steel: #8793a0;
+  --hover: #dcc79f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family:
+    "Manrope",
+    "Segoe UI",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(207, 184, 141, 0.14), transparent 24%),
+    radial-gradient(circle at top right, rgba(135, 147, 160, 0.16), transparent 26%),
+    linear-gradient(180deg, #0d1116 0%, #121821 42%, #0f141b 100%);
+  color: var(--foreground);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3), transparent 70%);
+  z-index: -1;
+}
+
+* {
+  border-color: var(--line);
+}
+
+::selection {
+  background: rgba(207, 184, 141, 0.32);
+  color: #fff;
+}
+
+.container-shell {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.panel {
+  @apply border border-line bg-panel backdrop-blur-xl;
+}
+
+.eyebrow {
+  @apply inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.07] px-3 py-1 text-xs uppercase tracking-[0.3em] text-muted;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.headline-display {
+  font-family:
+    "Cormorant Garamond",
+    "Times New Roman",
+    Georgia,
+    serif;
+  font-variant-ligatures: discretionary-ligatures;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
