@@ -28,7 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <body>
         <div className="relative min-h-screen">
           <Navbar />
-          <main>{children}</main>
+          <main className="mobile-safe-offset">{children}</main>
           <Footer />
           <StickyWhatsapp />
           <MobileActionBar />
