@@ -288,23 +288,24 @@ export function GalleryAdvisor() {
         </>
       ) : null}
 
-      <button
-        type="button"
-        onClick={() => setOpen((current) => !current)}
-        className={cn(
-          "pointer-events-auto fixed right-3 inline-flex items-center gap-3 rounded-full border border-white/10 bg-[#10161d]/95 px-4 py-3 text-left shadow-2xl shadow-black/35 backdrop-blur-2xl transition hover:-translate-y-0.5 hover:border-white/20 md:right-5",
-          "bottom-[calc(6.5rem+env(safe-area-inset-bottom))] md:bottom-24",
-          open ? "hidden md:inline-flex" : "inline-flex",
-        )}
-      >
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-accent/30 bg-accent/10 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
-          GD
-        </span>
-        <span className="min-w-0">
-          <span className="block text-[10px] uppercase tracking-[0.18em] text-white/45">Akilli destek</span>
-          <span className="block truncate text-sm font-semibold text-white">Galeri Danismani</span>
-        </span>
-      </button>
+      {!open ? (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className={cn(
+            "pointer-events-auto fixed right-3 inline-flex items-center gap-3 rounded-full border border-white/10 bg-[#10161d]/95 px-4 py-3 text-left shadow-2xl shadow-black/35 backdrop-blur-2xl transition hover:-translate-y-0.5 hover:border-white/20 md:right-5",
+            "bottom-[calc(6.5rem+env(safe-area-inset-bottom))] md:bottom-24",
+          )}
+        >
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-accent/30 bg-accent/10 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+            GD
+          </span>
+          <span className="min-w-0">
+            <span className="block text-[10px] uppercase tracking-[0.18em] text-white/45">Akilli destek</span>
+            <span className="block truncate text-sm font-semibold text-white">Galeri Danismani</span>
+          </span>
+        </button>
+      ) : null}
     </div>
   );
 }

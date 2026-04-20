@@ -188,6 +188,48 @@ function getAvailableVehicles() {
   return vehicles.filter((vehicle) => getVehicleStatus(vehicle.slug) !== "Satıldı");
 }
 
+function getBudgetCap(budgetMax: number, multiplier: number) {
+  return Math.round(budgetMax * multiplier);
+}
+
+function applyBudgetFilterToRankedVehicles(rankedVehicles: ScoredVehicle[], budgetMax?: number) {
+  if (!budgetMax) {
+    return rankedVehicles;
+  }
+
+  const budgetCaps = [1, 1.08, 1.15, 1.25].map((multiplier) => getBudgetCap(budgetMax, multiplier));
+
+  for (const budgetCap of budgetCaps) {
+    const matches = rankedVehicles.filter((item) => item.vehicle.price <= budgetCap);
+    if (matches.length > 0) {
+      return matches;
+    }
+  }
+
+  return [];
+}
+
+function applyBudgetFilterToSuggestions(suggestions: AdvisorSuggestion[], budgetMax?: number) {
+  if (!budgetMax) {
+    return suggestions;
+  }
+
+  const budgetCaps = [1, 1.08, 1.15, 1.25].map((multiplier) => getBudgetCap(budgetMax, multiplier));
+
+  for (const budgetCap of budgetCaps) {
+    const matches = suggestions.filter((suggestion) => {
+      const vehicle = vehicles.find((item) => item.slug === suggestion.slug);
+      return vehicle ? vehicle.price <= budgetCap : false;
+    });
+
+    if (matches.length > 0) {
+      return matches;
+    }
+  }
+
+  return [];
+}
+
 function scoreVehicles(preferences: AdvisorPreferences, specificVehicles: Vehicle[]) {
   const availableVehicles = getAvailableVehicles();
 
@@ -271,98 +313,66 @@ function applyExplicitFilters(
   rankedVehicles: ScoredVehicle[],
   preferences: AdvisorPreferences,
 ) {
-  let filtered = rankedVehicles;
+  let filtered = applyBudgetFilterToRankedVehicles(rankedVehicles, preferences.budgetMax);
 
   if (preferences.brands.length > 0) {
-    const brandMatches = filtered.filter((item) => preferences.brands.includes(item.vehicle.brand));
-    if (brandMatches.length > 0) {
-      filtered = brandMatches;
-    }
+    filtered = filtered.filter((item) => preferences.brands.includes(item.vehicle.brand));
   }
 
   if (preferences.bodyStyle) {
-    const bodyMatches = filtered.filter((item) => inferBodyStyle(item.vehicle) === preferences.bodyStyle);
-    if (bodyMatches.length > 0) {
-      filtered = bodyMatches;
-    }
+    filtered = filtered.filter((item) => inferBodyStyle(item.vehicle) === preferences.bodyStyle);
   }
 
   if (preferences.fuel) {
-    const fuelMatches = filtered.filter((item) => item.vehicle.fuel === preferences.fuel);
-    if (fuelMatches.length > 0) {
-      filtered = fuelMatches;
-    }
+    filtered = filtered.filter((item) => item.vehicle.fuel === preferences.fuel);
   } else if (preferences.wantsElectric) {
     const electricMatches = filtered.filter((item) => item.vehicle.fuel === "Elektrik");
     if (electricMatches.length > 0) {
       filtered = electricMatches;
     } else {
-      const hybridMatches = filtered.filter((item) => item.vehicle.fuel === "Hibrit");
-      if (hybridMatches.length > 0) {
-        filtered = hybridMatches;
-      }
+      filtered = filtered.filter((item) => item.vehicle.fuel === "Hibrit");
     }
   }
 
   if (preferences.wantsPremium) {
-    const premiumMatches = filtered.filter((item) => isPremiumChoice(item.vehicle));
-    if (premiumMatches.length > 0) {
-      filtered = premiumMatches;
-    }
+    filtered = filtered.filter((item) => isPremiumChoice(item.vehicle));
   }
 
   return filtered;
 }
 
 function enforceFinalSuggestionFilters(suggestions: AdvisorSuggestion[], preferences: AdvisorPreferences) {
-  let filtered = suggestions;
+  let filtered = applyBudgetFilterToSuggestions(suggestions, preferences.budgetMax);
 
   if (preferences.brands.length > 0) {
-    const brandMatches = filtered.filter((suggestion) =>
+    filtered = filtered.filter((suggestion) =>
       preferences.brands.some((brand) => suggestion.title.startsWith(brand)),
     );
-    if (brandMatches.length > 0) {
-      filtered = brandMatches;
-    }
   }
 
   if (preferences.bodyStyle) {
-    const bodyMatches = filtered.filter((suggestion) => {
+    filtered = filtered.filter((suggestion) => {
       const vehicle = vehicles.find((item) => item.slug === suggestion.slug);
       return vehicle ? inferBodyStyle(vehicle) === preferences.bodyStyle : false;
     });
-
-    if (bodyMatches.length > 0) {
-      filtered = bodyMatches;
-    }
   }
 
   if (preferences.fuel) {
-    const fuelMatches = filtered.filter((suggestion) => suggestion.subtitle.includes(`• ${preferences.fuel} •`));
-    if (fuelMatches.length > 0) {
-      filtered = fuelMatches;
-    }
+    filtered = filtered.filter((suggestion) => suggestion.subtitle.includes(`• ${preferences.fuel} •`));
   } else if (preferences.wantsElectric) {
     const electricMatches = filtered.filter((suggestion) => suggestion.subtitle.includes("• Elektrik •"));
     if (electricMatches.length > 0) {
       filtered = electricMatches;
     } else {
-      const hybridMatches = filtered.filter((suggestion) => suggestion.subtitle.includes("• Hibrit •"));
-      if (hybridMatches.length > 0) {
-        filtered = hybridMatches;
-      }
+      filtered = filtered.filter((suggestion) => suggestion.subtitle.includes("• Hibrit •"));
     }
   }
 
   if (preferences.wantsPremium) {
-    const premiumMatches = filtered.filter((suggestion) => {
+    filtered = filtered.filter((suggestion) => {
       const vehicle = vehicles.find((item) => item.slug === suggestion.slug);
       return vehicle ? isPremiumChoice(vehicle) : false;
     });
-
-    if (premiumMatches.length > 0) {
-      filtered = premiumMatches;
-    }
   }
 
   return filtered;
