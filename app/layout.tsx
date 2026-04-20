@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import "@/app/globals.css";
+import { GalleryAdvisorLoader } from "@/components/assistant/gallery-advisor-loader";
 import { MobileActionBar } from "@/components/layout/mobile-action-bar";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           <main className="mobile-safe-offset">{children}</main>
           <Footer />
           <StickyWhatsapp />
+          <GalleryAdvisorLoader />
           <MobileActionBar />
         </div>
       </body>
