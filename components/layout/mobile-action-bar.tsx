@@ -12,22 +12,22 @@ export function MobileActionBar() {
           href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
           className="flex min-h-[68px] flex-col items-center justify-center gap-1 border-r border-white/10 px-2 py-3 text-center text-[11px] text-white/75"
         >
-          <span className="font-semibold text-white">Hemen Ara</span>
+          <span className="font-semibold text-white">Ara</span>
           <span className="truncate">{contactInfo.phone}</span>
         </Link>
         <Link
-          href={`https://wa.me/${contactInfo.whatsapp.replace(/\D/g, "")}?text=Merhaba,%20araç%20için%20fiyat,%20ekspertiz%20ve%20randevu%20bilgisi%20almak%20istiyorum.`}
+          href={`https://wa.me/${contactInfo.whatsapp.replace(/\D/g, "")}?text=Merhaba,%20stoktaki%20araçlar,%20fiyat,%20ekspertiz%20ve%20takas%20bilgisi%20almak%20istiyorum.`}
           className="flex min-h-[68px] flex-col items-center justify-center gap-1 border-r border-white/10 bg-accent px-2 py-3 text-center text-[11px] font-semibold text-black"
         >
           <span>WhatsApp</span>
-          <span>Hızlı Teklif</span>
+          <span>Fiyat Sor</span>
         </Link>
         <Link
           href="/contact#appointment"
           className="flex min-h-[68px] flex-col items-center justify-center gap-1 px-2 py-3 text-center text-[11px] text-white/75"
         >
           <span className="font-semibold text-white">Randevu</span>
-          <span>Test Sürüşü</span>
+          <span>Showroom</span>
         </Link>
       </div>
     </div>
