@@ -14,7 +14,7 @@ export function FeaturedSection() {
         />
       </div>
 
-      <div className="mt-10 grid gap-4 sm:mt-12 sm:gap-6 lg:grid-cols-2">
+      <div className="mt-10 grid gap-4 sm:mt-12 sm:gap-6 lg:grid-cols-2 2xl:grid-cols-3">
         {featuredVehicles.map((vehicle, index) => (
           <Reveal key={vehicle.slug} delay={index * 0.08}>
             <VehicleCard vehicle={vehicle} />

@@ -3,7 +3,7 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { featuredVehicles } from "@/lib/data";
 
 const heroStats = [
-  { value: "8+", label: "Seçili premium araç" },
+  { value: "14+", label: "Seçili premium araç" },
   { value: "%100", label: "Ekspertiz paylaşımı" },
   { value: "Var", label: "Takas kabul" },
   { value: "15 dk", label: "WhatsApp dönüşü" },

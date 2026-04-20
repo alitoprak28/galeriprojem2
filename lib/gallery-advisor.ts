@@ -40,8 +40,38 @@ function normalizeText(value: string) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
+function normalizeCompactText(value: string) {
+  return normalizeText(value).replace(/[^a-z0-9]+/g, "");
+}
+
+function getVehicleSearchKeys(vehicle: Vehicle) {
+  const modelKey = normalizeText(vehicle.model);
+  const brandModelKey = normalizeText(`${vehicle.brand} ${vehicle.model}`);
+  const seriesKey = normalizeText(`${vehicle.model} ${vehicle.series}`);
+  const modelTokens = modelKey.split(/\s+/).filter(Boolean);
+  const firstToken = modelTokens[0];
+  const secondToken = modelTokens[1];
+  const shorthandKeys = [
+    firstToken && (firstToken.length >= 3 || /\d/.test(firstToken)) ? firstToken : undefined,
+    firstToken && secondToken ? `${firstToken} ${secondToken}` : undefined,
+    firstToken === "model" && secondToken ? `model ${secondToken}` : undefined,
+    firstToken && firstToken.length === 1 && secondToken ? `${firstToken} ${secondToken}` : undefined,
+  ].filter((value): value is string => Boolean(value));
+
+  return [
+    { value: brandModelKey, weight: 6 },
+    { value: seriesKey, weight: 5 },
+    { value: modelKey, weight: 4 },
+    ...shorthandKeys.map((value) => ({ value, weight: value.includes(" ") ? 3 : 2 })),
+  ];
+}
+
 function inferBodyStyle(vehicle: Vehicle): VehicleBodyStyle {
-  if (["tesla-model-y-long-range-2024", "porsche-macan-2023", "audi-q8-55-tfsi-s-line-2023", "bmw-x5-xdrive30d-m-sport-2022"].includes(vehicle.slug)) {
+  if (
+    ["model-y", "macan", "q8", "x5", "q5", "tiguan", "glc", "gle", "x3", "x7", "q3", "q7"].some((keyword) =>
+      vehicle.slug.includes(keyword),
+    )
+  ) {
     return "SUV";
   }
 
@@ -133,14 +163,38 @@ function extractBudgetMax(text: string): number | undefined {
 
 function findMentionedVehicles(text: string) {
   const normalized = normalizeText(text);
+  const compactNormalized = normalizeCompactText(text);
 
   return vehicles.filter((vehicle) => {
-    const modelKey = normalizeText(vehicle.model);
-    const brandModelKey = normalizeText(`${vehicle.brand} ${vehicle.model}`);
-    const seriesKey = normalizeText(`${vehicle.model} ${vehicle.series}`);
-
-    return normalized.includes(brandModelKey) || normalized.includes(seriesKey) || normalized.includes(modelKey);
+    return getVehicleSearchKeys(vehicle).some(({ value }) => {
+      const compactCandidate = normalizeCompactText(value);
+      return normalized.includes(value) || compactNormalized.includes(compactCandidate);
+    });
   });
+}
+
+function findPrimaryVehicleMatch(text: string) {
+  const normalized = normalizeText(text);
+  const compactNormalized = normalizeCompactText(text);
+
+  const matches = vehicles
+    .map((vehicle) => {
+      let maxScore = 0;
+
+      for (const { value, weight } of getVehicleSearchKeys(vehicle)) {
+        const compactCandidate = normalizeCompactText(value);
+        const matched = normalized.includes(value) || compactNormalized.includes(compactCandidate);
+        if (matched) {
+          maxScore = Math.max(maxScore, weight);
+        }
+      }
+
+      return { vehicle, score: maxScore };
+    })
+    .filter((item) => item.score > 0)
+    .sort((left, right) => right.score - left.score);
+
+  return matches[0]?.vehicle;
 }
 
 function extractPreferences(messages: AdvisorMessageInput[]): AdvisorPreferences {
@@ -495,7 +549,8 @@ export function buildAdvisorReply(messages: AdvisorMessageInput[]): AdvisorReply
 
   const lastMessage = userMessages[userMessages.length - 1]?.content ?? "";
   const preferences = extractPreferences(messages);
-  const mentionedVehicles = findMentionedVehicles(lastMessage);
+  const primaryVehicleMatch = findPrimaryVehicleMatch(lastMessage);
+  const mentionedVehicles = primaryVehicleMatch ? [primaryVehicleMatch] : findMentionedVehicles(lastMessage);
   const rankedVehicles = applyExplicitFilters(scoreVehicles(preferences, mentionedVehicles), preferences);
   const suggestions = enforceFinalSuggestionFilters(rankedVehicles.slice(0, 8).map(toSuggestion), preferences).slice(0, 4);
   const signalCount = [
@@ -512,10 +567,10 @@ export function buildAdvisorReply(messages: AdvisorMessageInput[]): AdvisorReply
     return buildContactReply(suggestions);
   }
 
-  if (mentionedVehicles.length === 1 && asksForRecommendation(lastMessage)) {
+  if (primaryVehicleMatch && asksForRecommendation(lastMessage)) {
     return {
       intent: "recommend",
-      message: `${mentionedVehicles[0].brand} ${mentionedVehicles[0].model} için sizi doğrudan detay sayfasına yönlendirebilirim. İsterseniz benzer birkaç alternatifi de yanına bıraktım.`,
+      message: `${primaryVehicleMatch.brand} ${primaryVehicleMatch.model} için sizi doğrudan detay sayfasına yönlendirebilirim. İsterseniz benzer birkaç alternatifi de yanına bıraktım.`,
       suggestions,
       quickReplies: [
         { label: "Benzer araçları göster", prompt: "Benzer araçları göster." },
@@ -524,7 +579,7 @@ export function buildAdvisorReply(messages: AdvisorMessageInput[]): AdvisorReply
       ],
       cta: {
         label: "Araç Detayına Git",
-        href: `/vehicles/${mentionedVehicles[0].slug}`,
+        href: `/vehicles/${primaryVehicleMatch.slug}`,
       },
     };
   }

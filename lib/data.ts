@@ -395,13 +395,219 @@ export const vehicles: Vehicle[] = [
       "Harman Kardon surround ses",
     ],
   },
+  {
+    slug: "mercedes-benz-glc-300-4matic-amg-2023",
+    brand: "Mercedes-Benz",
+    model: "GLC 300",
+    series: "4MATIC AMG",
+    year: 2023,
+    price: 5650000,
+    km: 19000,
+    fuel: "Benzin",
+    transmission: "9G-Tronic",
+    horsepower: 258,
+    drivetrain: "Dört çeker",
+    color: "Graphite Gri",
+    badge: "SUV",
+    location: "İstanbul",
+    shortDescription: "AMG iç/dış paket, Burmester, panoramik cam tavan, bayi çıkışlı.",
+    description:
+      "Yeni nesil GLC, yüksek oturma pozisyonunu Mercedes rafineliğiyle bir araya getiriyor. Aile kullanımı, şehir içi prestij ve uzun yol konforu arasında dengeli bir premium SUV seçeneği sunuyor.",
+    coverImage:
+      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1400&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1400&q=80",
+    ],
+    equipment: [
+      "AMG iç ve dış tasarım paketi",
+      "Burmester ses sistemi",
+      "Panoramik cam tavan",
+      "360 derece kamera",
+      "Kablosuz Apple CarPlay",
+      "Adaptif sürüş destek paketi",
+    ],
+  },
+  {
+    slug: "audi-q5-40-tdi-quattro-2022",
+    brand: "Audi",
+    model: "Q5 40 TDI",
+    series: "quattro",
+    year: 2022,
+    price: 3950000,
+    km: 42000,
+    fuel: "Dizel",
+    transmission: "Otomatik",
+    horsepower: 204,
+    drivetrain: "Dört çeker",
+    color: "Navarra Mavi",
+    badge: "Aile SUV",
+    location: "İstanbul",
+    shortDescription: "S line görünüm, sanal kokpit, Matrix LED, servis bakımlı.",
+    description:
+      "Q5, aile kullanımı için geniş yaşam alanını ve Audi’nin tok sürüş karakterini birleştiriyor. Dizel ekonomisi ve quattro altyapısıyla uzun yolda güven veren bir seçenek.",
+    coverImage:
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1400&q=80",
+    ],
+    equipment: [
+      "quattro dört çeker",
+      "S line tasarım detayları",
+      "Matrix LED farlar",
+      "Sanal kokpit plus",
+      "Üç bölgeli dijital klima",
+      "Elektrikli bagaj kapağı",
+    ],
+  },
+  {
+    slug: "bmw-i4-edrive40-m-sport-2023",
+    brand: "BMW",
+    model: "i4 eDrive40",
+    series: "M Sport",
+    year: 2023,
+    price: 4150000,
+    km: 17000,
+    fuel: "Elektrik",
+    transmission: "Otomatik",
+    horsepower: 340,
+    drivetrain: "Arkadan itiş",
+    color: "Frozen Pure Grey",
+    badge: "Elektrikli",
+    location: "İstanbul",
+    shortDescription: "M Sport, lazer far, Harman Kardon, adaptif cruise destekli.",
+    description:
+      "i4 eDrive40, BMW sürüş karakterini elektrikli güç aktarımıyla modernleştiriyor. Sessiz kabin, güçlü hızlanma ve günlük premium kullanım arayanlar için dengeli bir alternatif.",
+    coverImage:
+      "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1400&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1617469767053-d3b523a0b982?auto=format&fit=crop&w=1400&q=80",
+    ],
+    equipment: [
+      "M Sport tasarım paketi",
+      "BMW Curved Display",
+      "Harman Kardon surround ses",
+      "Adaptif hız sabitleyici",
+      "Kablosuz şarj",
+      "Lazer far",
+    ],
+  },
+  {
+    slug: "porsche-taycan-4s-2022",
+    brand: "Porsche",
+    model: "Taycan 4S",
+    series: "Performance",
+    year: 2022,
+    price: 6250000,
+    km: 26000,
+    fuel: "Elektrik",
+    transmission: "Otomatik",
+    horsepower: 530,
+    drivetrain: "Dört çeker",
+    color: "Crayon",
+    badge: "Sport EV",
+    location: "İstanbul",
+    shortDescription: "Sport Chrono, Bose, panoramik tavan, yetkili servis geçmişli.",
+    description:
+      "Taycan 4S, Porsche performans hissini elektrikli dünyaya güçlü bir şekilde taşıyor. Dikkat çekici tasarım, yüksek kalite algısı ve anlık hızlanmasıyla vitrinin özel modellerinden biri.",
+    coverImage:
+      "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1400&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1617203459116-7b6c3ab2aa72?auto=format&fit=crop&w=1400&q=80",
+    ],
+    equipment: [
+      "Sport Chrono paketi",
+      "Bose surround ses",
+      "Panoramik cam tavan",
+      "Isıtmalı hafızalı ön koltuklar",
+      "360 derece kamera",
+      "Porsche Electric Sport Sound",
+    ],
+  },
+  {
+    slug: "volkswagen-tiguan-1-5-etsi-r-line-2024",
+    brand: "Volkswagen",
+    model: "Tiguan 1.5 eTSI",
+    series: "R-Line",
+    year: 2024,
+    price: 2980000,
+    km: 8000,
+    fuel: "Hibrit",
+    transmission: "Otomatik",
+    horsepower: 150,
+    drivetrain: "Önden çekiş",
+    color: "Dolphin Grey",
+    badge: "Yeni Giriş",
+    location: "İstanbul",
+    shortDescription: "R-Line iç/dış, dijital kokpit, garanti devam ediyor.",
+    description:
+      "Tiguan R-Line, aile kullanımı için pratik SUV karakterini güncel tasarım ve düşük kilometre avantajıyla sunuyor. Şehir içi kullanım, hafta sonu kaçamakları ve ikinci el değeri için dengeli bir tercih.",
+    coverImage:
+      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1400&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80",
+    ],
+    equipment: [
+      "R-Line iç ve dış paket",
+      "Dijital Cockpit Pro",
+      "Adaptif hız sabitleyici",
+      "Geri görüş kamerası",
+      "Kablosuz telefon yansıtma",
+      "Şerit takip asistanı",
+    ],
+  },
+  {
+    slug: "tesla-model-3-long-range-2024",
+    brand: "Tesla",
+    model: "Model 3",
+    series: "Long Range",
+    year: 2024,
+    price: 3740000,
+    km: 9000,
+    fuel: "Elektrik",
+    transmission: "Otomatik",
+    horsepower: 498,
+    drivetrain: "Dört çeker",
+    color: "Stealth Grey",
+    badge: "Yeni Nesil",
+    location: "İstanbul",
+    shortDescription: "Highland kasa, uzun menzil, premium ses, autopilot destekli.",
+    description:
+      "Yeni kasa Tesla Model 3 Long Range, şehir içi kullanımda verimlilik ve uzun yolda menzil avantajını bir araya getiriyor. Modern kabin mimarisi ve güçlü yazılım deneyimiyle dikkat çekiyor.",
+    coverImage:
+      "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1400&q=80",
+    ],
+    equipment: [
+      "Long Range çift motor",
+      "Autopilot destek sistemi",
+      "Premium ses sistemi",
+      "Isıtmalı ön/arka koltuklar",
+      "Cam tavan",
+      "Kablosuz yazılım güncellemeleri",
+    ],
+  },
 ];
 
 export const featuredSlugs = [
+  "mercedes-benz-glc-300-4matic-amg-2023",
+  "audi-q5-40-tdi-quattro-2022",
+  "bmw-i4-edrive40-m-sport-2023",
+  "volkswagen-tiguan-1-5-etsi-r-line-2024",
   "mercedes-benz-e-220-d-amg-2023",
-  "audi-a6-45-tfsi-quattro-2022",
-  "bmw-520i-m-sport-2024",
-  "porsche-macan-2023",
+  "tesla-model-3-long-range-2024",
 ];
 
 export const vehicleStatusMap: Record<string, VehicleStatus> = {
@@ -413,6 +619,12 @@ export const vehicleStatusMap: Record<string, VehicleStatus> = {
   "volkswagen-golf-1-5-etsi-r-line-2024": "Stokta",
   "audi-q8-55-tfsi-s-line-2023": "Stokta",
   "bmw-x5-xdrive30d-m-sport-2022": "Satıldı",
+  "mercedes-benz-glc-300-4matic-amg-2023": "Stokta",
+  "audi-q5-40-tdi-quattro-2022": "Stokta",
+  "bmw-i4-edrive40-m-sport-2023": "Yeni Giriş",
+  "porsche-taycan-4s-2022": "Kapora Alındı",
+  "volkswagen-tiguan-1-5-etsi-r-line-2024": "Stokta",
+  "tesla-model-3-long-range-2024": "Yeni Giriş",
 };
 
 export const vehicleVideoMap: Record<string, string> = {
@@ -551,7 +763,7 @@ export const sampleLeads: LeadItem[] = [
   },
 ];
 
-export const featuredVehicles = vehicles.filter((vehicle) => featuredSlugs.includes(vehicle.slug)).slice(0, 4);
+export const featuredVehicles = vehicles.filter((vehicle) => featuredSlugs.includes(vehicle.slug)).slice(0, 6);
 
 export function getVehicleBySlug(slug: string) {
   return vehicles.find((vehicle) => vehicle.slug === slug);
