@@ -32,15 +32,21 @@ export function SocialSection() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 sm:grid-rows-[1.2fr_1fr]">
-          <article className="relative overflow-hidden rounded-[28px] border border-white/10 sm:col-span-2">
-            <div className="relative h-64 sm:h-72">
+          <article className="overflow-hidden rounded-[28px] border border-white/10 bg-[#12171d] sm:col-span-2">
+            <div className="relative h-56 sm:h-72">
               <Image src={socialVehicles[0].coverImage} alt={socialVehicles[0].model} fill sizes="100vw" className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0b0e13] via-black/10 to-transparent" />
+              <div className="absolute inset-x-4 bottom-4 hidden rounded-[22px] border border-white/10 bg-black/40 p-4 backdrop-blur-xl md:block">
+                <p className="text-xs uppercase tracking-[0.22em] text-accent">Instagram 01</p>
+                <h3 className="mt-2 text-2xl font-semibold text-white">{instagramFeed[0].title}</h3>
+                <p className="mt-2 text-sm leading-6 text-white/72">{instagramFeed[0].caption}</p>
+              </div>
             </div>
-            <div className="absolute inset-x-4 bottom-4 rounded-[22px] border border-white/10 bg-black/40 p-4 backdrop-blur-xl">
+
+            <div className="space-y-2 p-4 md:hidden">
               <p className="text-xs uppercase tracking-[0.22em] text-accent">Instagram 01</p>
-              <h3 className="mt-2 text-2xl font-semibold text-white">{instagramFeed[0].title}</h3>
-              <p className="mt-2 text-sm leading-6 text-white/72">{instagramFeed[0].caption}</p>
+              <h3 className="text-2xl font-semibold text-white">{instagramFeed[0].title}</h3>
+              <p className="text-sm leading-6 text-white/72">{instagramFeed[0].caption}</p>
             </div>
           </article>
 
@@ -48,15 +54,21 @@ export function SocialSection() {
             const vehicle = socialVehicles[index + 1];
 
             return (
-              <article key={post.title} className="relative overflow-hidden rounded-[28px] border border-white/10">
-                <div className="relative h-56 sm:h-full">
+              <article key={post.title} className="overflow-hidden rounded-[28px] border border-white/10 bg-[#12171d]">
+                <div className="relative h-48 sm:h-full">
                   <Image src={vehicle.coverImage} alt={vehicle.model} fill sizes="50vw" className="object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b0e13] via-black/10 to-transparent" />
+                  <div className="absolute inset-x-4 bottom-4 hidden rounded-[22px] border border-white/10 bg-black/40 p-4 backdrop-blur-xl md:block">
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-accent">Instagram 0{index + 2}</p>
+                    <h3 className="mt-2 text-xl font-semibold text-white">{post.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-white/72">{post.caption}</p>
+                  </div>
                 </div>
-                <div className="absolute inset-x-4 bottom-4 rounded-[22px] border border-white/10 bg-black/40 p-4 backdrop-blur-xl">
+
+                <div className="space-y-2 p-4 md:hidden">
                   <p className="text-[10px] uppercase tracking-[0.18em] text-accent">Instagram 0{index + 2}</p>
-                  <h3 className="mt-2 text-xl font-semibold text-white">{post.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-white/72">{post.caption}</p>
+                  <h3 className="text-xl font-semibold text-white">{post.title}</h3>
+                  <p className="text-sm leading-6 text-white/72">{post.caption}</p>
                 </div>
               </article>
             );
