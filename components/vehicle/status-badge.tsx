@@ -10,7 +10,12 @@ const styles: Record<VehicleStatus, string> = {
 
 export function StatusBadge({ status }: { status: VehicleStatus }) {
   return (
-    <span className={cn("rounded-full border px-3 py-1 text-[11px] uppercase tracking-[0.24em]", styles[status])}>
+    <span
+      className={cn(
+        "inline-flex max-w-full items-center rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.18em] sm:text-[11px] sm:tracking-[0.24em]",
+        styles[status],
+      )}
+    >
       {status}
     </span>
   );

@@ -13,8 +13,8 @@ export function VehicleGallery({ images, alt }: VehicleGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="space-y-4">
-      <div className="relative h-[430px] overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.03] sm:h-[520px]">
+    <div className="min-w-0 space-y-4">
+      <div className="relative h-[320px] overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] sm:h-[430px] sm:rounded-[32px] lg:h-[520px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={images[activeIndex]}
@@ -30,13 +30,13 @@ export function VehicleGallery({ images, alt }: VehicleGalleryProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/5" />
       </div>
 
-      <div className="hide-scrollbar flex gap-3 overflow-x-auto overscroll-x-contain">
+      <div className="hide-scrollbar flex gap-3 overflow-x-auto overscroll-x-contain pb-1">
         {images.map((image, index) => (
           <button
             key={image}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className={`relative h-24 min-w-36 overflow-hidden rounded-2xl border transition ${
+            className={`relative h-20 min-w-[7.5rem] overflow-hidden rounded-2xl border transition sm:h-24 sm:min-w-36 ${
               activeIndex === index ? "border-accent" : "border-white/10"
             }`}
           >

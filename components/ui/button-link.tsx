@@ -16,7 +16,7 @@ export function ButtonLink({
   className,
 }: ButtonLinkProps) {
   const classNames = cn(
-    "inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-medium transition duration-300",
+    "inline-flex max-w-full items-center justify-center rounded-full px-5 py-3 text-center text-sm font-medium transition duration-300",
     variant === "primary" &&
       "bg-accent text-black shadow-glow hover:-translate-y-0.5 hover:brightness-110",
     variant === "secondary" &&
