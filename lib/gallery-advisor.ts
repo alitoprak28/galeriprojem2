@@ -98,13 +98,21 @@ function extractUseCase(text: string): VehicleUseCase | undefined {
 
 function extractBudgetMax(text: string): number | undefined {
   const normalized = normalizeText(text);
-  const rangeMillionMatch = normalized.match(/(\d+(?:[.,]\d+)?)\s*(?:-|ile|ila)\s*(\d+(?:[.,]\d+)?)\s*(?:milyon|mn|m)\b/);
+  const budgetContextMillionMatch = normalized.match(
+    /(?:maks(?:imum)?|maximum|en\s+fazla|en\s+cok|ust\s+limit(?:im)?|limit(?:im)?)\s*(\d+(?:[.,]\d+)?)\s*(?:milyon(?:luk)?|mn|m)\b/,
+  );
+
+  if (budgetContextMillionMatch) {
+    return Number(budgetContextMillionMatch[1].replace(",", ".")) * 1_000_000;
+  }
+
+  const rangeMillionMatch = normalized.match(/(\d+(?:[.,]\d+)?)\s*(?:-|ile|ila)\s*(\d+(?:[.,]\d+)?)\s*(?:milyon(?:luk)?|mn|m)\b/);
 
   if (rangeMillionMatch) {
     return Number(rangeMillionMatch[2].replace(",", ".")) * 1_000_000;
   }
 
-  const millionMatches = [...normalized.matchAll(/(\d+(?:[.,]\d+)?)\s*(?:milyon|mn|m)\b/g)];
+  const millionMatches = [...normalized.matchAll(/(\d+(?:[.,]\d+)?)\s*(?:milyon(?:luk)?|mn|m)\b/g)];
   if (millionMatches.length > 0) {
     return Math.max(...millionMatches.map((match) => Number(match[1].replace(",", ".")) * 1_000_000));
   }

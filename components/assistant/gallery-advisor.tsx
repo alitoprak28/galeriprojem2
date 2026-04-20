@@ -162,10 +162,10 @@ export function GalleryAdvisor() {
 
           <section
             className={cn(
-              "pointer-events-auto fixed inset-0 flex h-[100dvh] flex-col overflow-hidden bg-[#0d141b] md:inset-auto md:bottom-40 md:right-5 md:h-[36rem] md:w-[25rem] md:rounded-[30px] md:border md:border-white/10 md:bg-[#0f151c]/96 md:shadow-2xl md:shadow-black/45 md:backdrop-blur-2xl",
+              "pointer-events-auto fixed inset-0 flex h-[100dvh] flex-col overflow-hidden bg-[#0d141b] md:inset-y-0 md:right-0 md:h-screen md:w-[min(36rem,42vw)] md:border-l md:border-white/10 md:bg-[#0f151c]/98 md:shadow-2xl md:shadow-black/45 md:backdrop-blur-2xl",
             )}
           >
-            <div className="border-b border-white/10 bg-[#0f151c]/92 px-4 pb-4 pt-[max(1rem,env(safe-area-inset-top))] md:bg-transparent md:px-4 md:pt-4">
+            <div className="border-b border-white/10 bg-[#0f151c]/92 px-4 pb-4 pt-[max(1rem,env(safe-area-inset-top))] md:px-6 md:pb-5 md:pt-6">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <p className="text-[10px] uppercase tracking-[0.22em] text-accent">Galeri Danismani</p>
@@ -185,7 +185,7 @@ export function GalleryAdvisor() {
               </div>
             </div>
 
-            <div ref={scrollAreaRef} className="hide-scrollbar flex-1 space-y-4 overflow-y-auto px-4 py-4 md:px-4">
+            <div ref={scrollAreaRef} className="hide-scrollbar flex-1 space-y-4 overflow-y-auto px-4 py-4 md:px-6 md:py-6">
               {messages.map((message) => (
                 <div key={message.id} className={cn("space-y-3", message.role === "user" ? "items-end" : "items-start")}>
                   <div
@@ -260,7 +260,7 @@ export function GalleryAdvisor() {
               ) : null}
             </div>
 
-            <div className="border-t border-white/10 bg-[#0f151c]/96 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4 md:bg-transparent">
+            <div className="border-t border-white/10 bg-[#0f151c]/96 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4 md:px-6 md:pb-6 md:pt-5">
               <div className="rounded-[24px] border border-white/10 bg-black/20 p-2">
                 <textarea
                   value={input}
