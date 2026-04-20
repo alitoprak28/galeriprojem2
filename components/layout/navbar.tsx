@@ -17,15 +17,15 @@ const socialLinks = [
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#090d13]/80 backdrop-blur-2xl">
+    <header className="sticky inset-x-0 top-0 z-50 w-full border-b border-white/10 bg-[#090d13]/80 backdrop-blur-2xl">
       <div className="container-shell py-3 sm:py-4">
         <div className="flex min-h-[56px] items-center justify-between gap-4 sm:gap-6">
-          <Link href="/" className="group flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sm tracking-[0.35em] text-accent">
+          <Link href="/" className="group flex min-w-0 items-center gap-3">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sm tracking-[0.35em] text-accent">
               VM
             </div>
             <div className="min-w-0">
-              <p className="text-[10px] uppercase tracking-[0.32em] text-muted sm:text-[11px] sm:tracking-[0.38em]">
+              <p className="truncate text-[10px] uppercase tracking-[0.26em] text-muted sm:text-[11px] sm:tracking-[0.34em]">
                 Premium Araç Galerisi
               </p>
               <p className="truncate text-base font-semibold text-white transition group-hover:text-accent sm:text-lg">
@@ -42,7 +42,7 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <div className="hidden items-center gap-2 xl:flex">
               {socialLinks.map((link) => (
                 <Link
@@ -63,12 +63,12 @@ export function Navbar() {
           </div>
         </div>
 
-        <nav className="hide-scrollbar -mx-1 flex gap-2 overflow-x-auto pt-3 lg:hidden">
+        <nav className="hide-scrollbar flex gap-2 overflow-x-auto overscroll-x-contain pt-3 lg:hidden">
           {navigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/80 transition hover:border-white/20 hover:text-white"
+              className="shrink-0 whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/80 transition hover:border-white/20 hover:text-white"
             >
               {item.label}
             </Link>

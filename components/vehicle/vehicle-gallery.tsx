@@ -30,7 +30,7 @@ export function VehicleGallery({ images, alt }: VehicleGalleryProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/5" />
       </div>
 
-      <div className="hide-scrollbar flex gap-3 overflow-x-auto">
+      <div className="hide-scrollbar flex gap-3 overflow-x-auto overscroll-x-contain">
         {images.map((image, index) => (
           <button
             key={image}
